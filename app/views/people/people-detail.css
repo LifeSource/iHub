@@ -1,0 +1,37 @@
+ActionBar {
+	color: #fff;
+	background-color: #333;
+}
+
+Label {
+	background-color: #fff;
+}
+
+Image {
+	width: 150;
+	height: 150;
+	margin-top: 80;
+	border-radius: 60;
+}
+
+.heading {
+	color: #fff;
+	padding: 10;
+	font-size: 14;
+	background-color: #ec532b;
+}
+
+.small-heading {
+	padding-top: 5;
+	padding-left: 10;
+	font-size: 12;
+	color: #ec532b;
+}
+
+.info {
+	color: #333;
+	font-size: 14;
+	padding-left: 10;
+	padding-bottom: 10;
+	background-color: #fff;
+}

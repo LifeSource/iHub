@@ -1,0 +1,6 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
+	<StackLayout>
+        <Image src="~/images/hublogo.png" horizontalAlignment="center" width="223" height="79" />
+		<Button text="People" tap="showPeopleList"></Button>
+	</StackLayout>
+</Page>

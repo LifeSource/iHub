@@ -1,0 +1,28 @@
+<Page loaded="pageLoaded">
+
+	<ActionBar title="Profile"></ActionBar>
+    <ScrollView>
+		<StackLayout orientation="vertical">
+			<Image src="{{ person.fullImageUrl }}"></Image>
+
+            <Label text="SUMMARY" class="heading"></Label>
+            <Label text="Name" class="small-heading"></Label>
+			<label text="{{ person.fullName }}" class="info"></label>
+            <Label text="Company" class="small-heading"></Label>
+			<label text="{{ person.company }}" class="info"></label>
+            <Label text="Role" class="small-heading"></Label>
+			<label text="{{ person.jobRole }}" class="info"></label>
+
+			<Label text="DETAILS" class="heading"></Label>
+			<ListView items="{{ person.contactDetails }}">
+				<ListView.itemTemplate>
+					<StackLayout>
+						<Label text="{{ contactDetailLabel }}" class="small-heading"></Label>
+						<Label text="{{ value }}" class="info"></Label>
+					</StackLayout>
+				</ListView.itemTemplate>
+			</ListView>
+
+        </StackLayout>
+    </ScrollView>
+</Page>
