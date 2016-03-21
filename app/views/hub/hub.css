@@ -1,0 +1,14 @@
+ActionBar {
+	color: #fff;
+	background-color: #333;
+}
+
+StackLayout {
+	font-family: "FontAwesome";
+}
+
+Button {
+	width: 200;
+	height: 160;
+	font-size: 20;
+}

@@ -1,6 +1,9 @@
 <Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
-	<StackLayout>
-        <Image src="~/images/hublogo.png" horizontalAlignment="center" width="223" height="79" />
-		<Button text="People" tap="showPeopleList"></Button>
-	</StackLayout>
+    <ActionBar title="Hub Modules"></ActionBar>
+    <ScrollView>
+        <StackLayout>
+            <Image src="~/images/hublogo.png" horizontalAlignment="center" width="223" height="79" />
+            <Button text="&#xf0c0; People" tap="showPeopleList"></Button>
+        </StackLayout>
+    </ScrollView>
 </Page>

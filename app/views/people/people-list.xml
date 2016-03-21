@@ -13,6 +13,6 @@
 				</StackLayout>
 			</ListView.itemTemplate>
 		</ListView>
-
+		<ActivityIndicator busy="{{ isLoading }}" row="1"></ActivityIndicator>
     </GridLayout>
 </Page>

@@ -6,6 +6,8 @@
     }
   },
   "dependencies": {
-    "tns-core-modules": "1.7.0"
+    "font-awesome": "^4.5.0",
+    "nativescript-email": "^1.1.2",
+    "tns-core-modules": "^1.7.0"
   }
 }

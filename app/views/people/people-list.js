@@ -1,30 +1,17 @@
-var config = require("../../shared/config");
-var fetchModule = require("fetch");
-var http = require("http");
 var frames = require("ui/frame");
 var Observable = require("data/observable").Observable;
 var ObservableArray = require("data/observable-array").ObservableArray;
 var PeopleListViewModel = require("../../shared/peopleList-viewModel");
-//var LoadingIndicator = require("nativescript-loading-indicator").LoadingIndicator;
 
 var page;
 var userkey;
-/*
-var loader = new LoadingIndicator();
-var options = {
 
-	message: "Loading data, please wait...",
-	ios: {
-		square: false,
-		margin: 10,
-		dimBackground: true,
-		color: "#4B0Ec6",
-		mode: "MBProgressHUDModeDeterminate"
-	}
-}; */
-
+var isLoading = true;
 var peopleList = new PeopleListViewModel([]);
-var pageData = new Observable({ peopleList: peopleList });
+var pageData = new Observable({
+	peopleList: peopleList,
+	isLoading: isLoading
+});
 var resultList = new ObservableArray([]);
 
 exports.pageLoaded = function(args) {
@@ -34,35 +21,32 @@ exports.pageLoaded = function(args) {
 	page.bindingContext = pageData;
 
 	if (peopleList.length === 0) {
-//		loader.show(options);
-		peopleList.load(userkey); // fetch the data from server.
-	//	loader.hide();
+		peopleList.load(userkey)
+			.then(function (response) {
+				pageData.set("isLoading", false);	
+			}); // fetch the data from server.
+	} else {
+		pageData.set("peopleList", peopleList);
+		pageData.set("isLoading", false);
 	}
-	pageData.set("peopleList", peopleList);
 
 	var searchBar = page.getViewById("searchBar");
-	searchBar.on("clear", function (args) {
-		resetFilteredPeopleList();
-		pageData.set("peopleList", peopleList);
+	searchBar.on("clear", function(args) {
+		resetPeopleList();
 	});
 
 	searchBar.on("propertyChange", function(args) {
-
 		var searchText = args.object.text;
 		if (searchText === "") {
+			resetPeopleList();
+		} else {
 			resetFilteredPeopleList();
-			pageData.set("peopleList", peopleList);
+			resultList = peopleList.filter(function(person) {
+				return person.fullName.trim().toLocaleLowerCase().match(searchText.trim().toLocaleLowerCase());
+			});
+			pageData.set("peopleList", resultList);
 		}
-
-		resetFilteredPeopleList();
-
-		resultList = peopleList.filter(function (person) {
-			return person.fullName.toLocaleLowerCase().match(searchText.toLocaleLowerCase());
-		});
-
-		pageData.set("peopleList", resultList);
 	});
-
 };
 
 exports.showDetail = function(args) {
@@ -78,7 +62,10 @@ exports.showDetail = function(args) {
 };
 
 function resetFilteredPeopleList() {
-	while (resultList.length > 0) {
-		resultList.pop();
-	}
+	resultList.length = 0;
+}
+
+function resetPeopleList() {
+	resetFilteredPeopleList();
+	pageData.set("peopleList", peopleList);
 }

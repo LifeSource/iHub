@@ -10,8 +10,7 @@ Label {
 Image {
 	width: 150;
 	height: 150;
-	margin-top: 80;
-	border-radius: 60;
+	border-radius: 50;
 }
 
 .heading {
@@ -34,4 +33,7 @@ Image {
 	padding-left: 10;
 	padding-bottom: 10;
 	background-color: #fff;
+}
+
+HtmlView {
 }

@@ -1,4 +1,6 @@
 var frames = require("ui/frame");
+var appSettings = require("application-settings");
+
 var page;
 
 exports.pageLoaded = function (args) {
@@ -8,7 +10,8 @@ exports.pageLoaded = function (args) {
 
 exports.showPeopleList = function () {
 
-	var userkey = page.navigationContext.userkey;
+	var userkey = appSettings.getString("userkey");
+	userkey = userkey || page.navigationContext.userkey;
 
     var navigateEntry = {
         moduleName: "views/people/people-list",
