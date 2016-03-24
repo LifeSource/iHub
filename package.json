@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "font-awesome": "^4.5.0",
-    "nativescript-email": "^1.1.2",
+    "nativescript-sqlite": "^1.0.8",
     "tns-core-modules": "^1.7.0"
   }
 }

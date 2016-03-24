@@ -16,7 +16,7 @@
         <ListView items="{{ person.contactDetails }}" row="1">
             <ListView.itemTemplate>
                 <StackLayout row="1">
-                    <HtmlView html="{{ contactDetailLabel }}" loaded="htmlLabelLoaded"></HtmlView>
+                    <HtmlView id="contactLabel" html="{{ contactDetailLabel }}" loaded="htmlLabelLoaded"></HtmlView>
                     <HtmlView html="{{ value }}" loaded="htmlValueLoaded"></HtmlView>
                 </StackLayout>
             </ListView.itemTemplate>

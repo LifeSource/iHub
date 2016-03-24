@@ -1,4 +1,5 @@
 var config = require("./config");
+var appSettings = require("application-settings");
 var fetchModule = require("fetch");
 var ObservableArray = require("data/observable-array").ObservableArray;
 
@@ -12,6 +13,7 @@ function PeopleListViewModel(people) {
 				return response.json();
 			})
 			.then(function (data) {
+				appSettings.setString("peopleList", JSON.stringify(data));
 				data.forEach(function (person) {
 					viewModel.push(person);
 				});

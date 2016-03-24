@@ -1,4 +1,5 @@
 var frames = require("ui/frame");
+var appSettings = require("application-settings");
 var Observable = require("data/observable").Observable;
 var ObservableArray = require("data/observable-array").ObservableArray;
 var PeopleListViewModel = require("../../shared/peopleList-viewModel");
@@ -20,15 +21,19 @@ exports.pageLoaded = function(args) {
 	userkey = userkey || page.navigationContext.userkey;
 	page.bindingContext = pageData;
 
-	if (peopleList.length === 0) {
+	var appSettingsPeopleList = appSettings.getString("peopleList");
+	if (!appSettingsPeopleList && peopleList.length === 0) {
 		peopleList.load(userkey)
 			.then(function (response) {
 				pageData.set("isLoading", false);	
 			}); // fetch the data from server.
+
 	} else {
+		peopleList = new ObservableArray(JSON.parse(appSettingsPeopleList));
 		pageData.set("peopleList", peopleList);
 		pageData.set("isLoading", false);
 	}
+	console.log("Before pList: ", appSettingsPeopleList);
 
 	var searchBar = page.getViewById("searchBar");
 	searchBar.on("clear", function(args) {
