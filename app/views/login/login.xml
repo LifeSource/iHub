@@ -1,11 +1,9 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-	<ScrollView>
-		<StackLayout orientation="vertical">
-			<Image src="~/images/hublogo.png" horizontalAlignment="center" width="223" height="79" />
-			<TextField id="username" text="{{ username }}" hint="User name" keyboardType="text" autocorrect="false" autocapitalizationType="none" />
-			<TextField id="password" text="{{ password }}" hint="Password" secure="true" />
-			<Button text="LOGIN" class="link" tap="login" />
-		</StackLayout>
-
-	</ScrollView>
+  <StackLayout orientation="vertical">
+    <Image src="~/images/hublogo.png" horizontalAlignment="center" width="223" height="79" />
+    <TextField id="username" text="{{ username }}" hint="User name" keyboardType="text" autocorrect="false" autocapitalizationType="none" />
+    <TextField id="password" text="{{ password }}" hint="Password" secure="true" />
+    <Button text="LOGIN" class="link" tap="login" />
+    <ActivityIndicator busy="{{ isLoading }}" verticalAlignment="center" horizontalAlignment="center"></ActivityIndicator>
+  </StackLayout>
 </Page>

@@ -21,3 +21,17 @@ exports.showPeopleList = function () {
 
     frames.topmost().navigate(navigateEntry);
 };
+
+exports.showProjectList = function() {
+
+	var userkey = appSettings.getString("userkey");
+	userkey = userkey || page.navigationContext.userkey;
+
+    var navigateEntry = {
+        moduleName: "views/project/project-list",
+        context: { "userkey": userkey },
+        animated: true
+    };
+
+    frames.topmost().navigate(navigateEntry);
+};

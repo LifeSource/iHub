@@ -1,0 +1,5 @@
+<Page loaded="pageLoaded">
+  <ListView items="{{ peopleList }}" itemTap="showDetail">
+    <ListView.itemTemplate></ListView.itemTemplate>
+  </ListView>
+</Page>

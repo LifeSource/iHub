@@ -1,0 +1,11 @@
+<Page loaded="pageLoaded">
+  <ActionBar></ActionBar>
+  <GridLayout>
+    <ListView items="{{ projectList }}" itemTap="showPeopleByProject" row="0">
+      <ListView.itemTemplate>
+        <Label text="{{ name }}"></Label>
+      </ListView.itemTemplate>
+    </ListView>
+    <ActivityIndicator busy="{{ isLoading }}"></ActivityIndicator>
+  </GridLayout>
+</Page>

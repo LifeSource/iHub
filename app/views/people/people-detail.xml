@@ -1,25 +1,24 @@
 <Page loaded="pageLoaded">
-    <ActionBar title="Profile"></ActionBar>
-    <GridLayout rows="auto, *" columns="*">
-        <StackLayout row="0">
-            <Image src="{{ person.fullImageUrl }}"></Image>
-            <Label text="SUMMARY" class="heading"></Label>
-            <Label text="Name" class="small-heading"></Label>
-            <label text="{{ person.fullName }}" class="info"></label>
-            <Label text="Company" class="small-heading"></Label>
-            <label text="{{ person.company }}" class="info"></label>
-            <Label text="Role" class="small-heading"></Label>
-            <label text="{{ person.jobRole }}" class="info"></label>
-			<Label text="CONTACT DETAILS" class="heading"></Label>
+  <ActionBar title="Profile"></ActionBar>
+  <GridLayout rows="auto, *">
+    <StackLayout row="0">
+      <Image src="{{ person.fullImageUrl }}" />
+      <Label text="SUMMARY" class="heading"></Label>
+      <Label text="Name" class="small-heading"></Label>
+      <label text="{{ person.fullName }}" class="info"></label>
+      <Label text="Company" class="small-heading"></Label>
+      <label text="{{ person.company }}" class="info"></label>
+      <Label text="Role" class="small-heading"></Label>
+      <label text="{{ person.jobRole }}" class="info"></label>
+      <Label text="CONTACT DETAILS" class="heading"></Label>
+    </StackLayout>
+    <ListView items="{{ person.contactDetails }}" row="1">
+      <ListView.itemTemplate>
+        <StackLayout verticalAlignment="stretch">
+          <HtmlView id="contactLabel" html="{{ contactDetailLabel }}" loaded="htmlLabelLoaded"></HtmlView>
+          <HtmlView html="{{ value }}" loaded="htmlValueLoaded"></HtmlView>
         </StackLayout>
-
-        <ListView items="{{ person.contactDetails }}" row="1">
-            <ListView.itemTemplate>
-                <StackLayout row="1">
-                    <HtmlView id="contactLabel" html="{{ contactDetailLabel }}" loaded="htmlLabelLoaded"></HtmlView>
-                    <HtmlView html="{{ value }}" loaded="htmlValueLoaded"></HtmlView>
-                </StackLayout>
-            </ListView.itemTemplate>
-        </ListView>
-    </GridLayout>
+      </ListView.itemTemplate>
+    </ListView>
+  </GridLayout>
 </Page>

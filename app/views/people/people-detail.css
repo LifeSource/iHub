@@ -3,14 +3,16 @@ ActionBar {
 	background-color: #333;
 }
 
-Label {
-	background-color: #fff;
+Image {
+  padding: 0;
+  margin-top: 10;
+  margin-bottom: 10;
+  width: 250;
+  height: 100;
 }
 
-Image {
-	width: 150;
-	height: 150;
-	border-radius: 50;
+Label {
+	background-color: #fff;
 }
 
 .heading {

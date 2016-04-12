@@ -1,7 +1,9 @@
-var config = require("./config");
 var http = require("http");
 var fetchModule = require("fetch");
 var Observable = require("data/observable").Observable;
+var config = require("./config");
+
+var page;
 
 function User(info) {
 
@@ -9,13 +11,14 @@ function User(info) {
 
 	var viewModel = new Observable({
 		username: info.username || "Clinton",
-		password: info.password || "clinton"
+		password: info.password || "clinton",
+        isLoading: false
 	});
 
 	viewModel.login = function () {
-
 		return fetchModule.fetch(
-			config.baseUrl + "/api/account/authenticate?username=" + viewModel.get("username") + "&password=" + viewModel.get("password"), {
+			config.baseUrl + "/api/account/authenticate?username="
+            + viewModel.get("username") + "&password=" + viewModel.get("password"), {
 			method: "POST",
 			body: JSON.stringify({
 				username: viewModel.get("username"),
@@ -27,7 +30,6 @@ function User(info) {
 		.then(function (response) {
 			return response.json();
 		});
-
 	};
 
 	return viewModel;
