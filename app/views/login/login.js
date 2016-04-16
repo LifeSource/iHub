@@ -25,9 +25,9 @@ function login() {
         })
         .then(function(response) {
             user.isLoading = false;
-            //appSettings.setString("username", user.username);
-            //appSettings.setString("password", user.password);
-            //appSettings.setString("userkey", response.associatedUserKey);
+            appSettings.setString("username", user.username);
+            appSettings.setString("password", user.password);
+            appSettings.setString("userkey", response.associatedUserKey);
 
             var navigateEntry = {
                 moduleName: "views/hub/hub",

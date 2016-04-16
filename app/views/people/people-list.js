@@ -6,31 +6,33 @@ var PeopleListViewModel = require("../../shared/peopleList-viewModel");
 
 var page;
 var userkey;
-
-var isLoading = true;
-var peopleList = new PeopleListViewModel([]);
-var filteredPeople = new ObservableArray([]);
-var pageData = new Observable({ peopleList: peopleList, isLoading: isLoading });
+var searchBar;
+var appSettingsPeopleList;
+var peopleList = new PeopleListViewModel();
+var filteredPeople = new ObservableArray();
+var pageData = new Observable({
+    peopleList: peopleList,
+    isLoading: false
+});
 
 exports.pageLoaded = function(args) {
 
     page = args.object;
-    userkey = userkey || page.navigationContext.userkey;
     page.bindingContext = pageData;
+    userkey = userkey || page.navigationContext.userkey;
 
-    var appSettingsPeopleList = appSettings.getString("peopleList");
-    if (!appSettingsPeopleList && peopleList.length === 0) {
-        peopleList.load(userkey) // fetch data from server
+    if (!dataLoaded()) {
+        pageData.isLoading = true;
+        peopleList.load(userkey)
             .then(function(response) {
-                pageData.set("isLoading", false);
+                pageData.isLoading = false;
             });
     } else {
         peopleList = new ObservableArray(JSON.parse(appSettingsPeopleList));
-        pageData.set("peopleList", peopleList);
-        pageData.set("isLoading", false);
+        pageData.peopleList = peopleList;
     }
 
-    var searchBar = page.getViewById("searchBar");
+    searchBar = page.getViewById("searchBar");
     searchBar.on("clear", function(args) {
         resetPeopleList();
     });
@@ -44,7 +46,7 @@ exports.pageLoaded = function(args) {
             filteredPeople = peopleList.filter(function(person) {
                 return person.fullName.trim().toLocaleLowerCase().match(searchText.trim().toLocaleLowerCase());
             });
-            pageData.set("peopleList", filteredPeople);
+            pageData.peopleList = filteredPeople;
         }
     });
 };
@@ -61,11 +63,16 @@ exports.showDetail = function(args) {
     frames.topmost().navigate(navigateEntry);
 };
 
+function dataLoaded() {
+    appSettingsPeopleList = appSettings.getString("peopleList");
+    return appSettingsPeopleList;
+}
+
 function resetFilteredPeopleList() {
     filteredPeople.length = 0;
 }
 
 function resetPeopleList() {
     resetFilteredPeopleList();
-    pageData.set("peopleList", peopleList);
+    pageData.peopleList = peopleList;
 }

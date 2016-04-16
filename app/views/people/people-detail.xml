@@ -2,7 +2,7 @@
   <ActionBar title="Profile"></ActionBar>
   <GridLayout rows="auto, *">
     <StackLayout row="0">
-      <Image src="{{ person.fullImageUrl }}" />
+      <Image src="{{ person.image }}" />
       <Label text="SUMMARY" class="heading"></Label>
       <Label text="Name" class="small-heading"></Label>
       <label text="{{ person.fullName }}" class="info"></label>

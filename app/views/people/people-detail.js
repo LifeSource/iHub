@@ -7,8 +7,8 @@ exports.pageLoaded = function (args) {
 
 exports.htmlLabelLoaded = function (args) {
 	args.object.ios.font = UIFont.fontWithNameSize("Helvetica", 12);
-}
+};
 
 exports.htmlValueLoaded = function (args) {
 	args.object.ios.font = UIFont.fontWithNameSize("Helvetica", 16);
-}
+};

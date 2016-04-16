@@ -1,5 +1,23 @@
+Page {
+    background-color: #333;
+}
+
+ActionBar {
+	color: #fff;
+	background-color: #333;
+}
+
 Label {
-  margin: 20;
+  margin: 15;
+}
+
+.info {
+	color: #ec532b;
+	padding-bottom: 10;
+}
+
+.search {
+	background-color: #ec532b;
 }
 
 ActivityIndicator {

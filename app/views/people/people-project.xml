@@ -1,5 +1,18 @@
 <Page loaded="pageLoaded">
-  <ListView items="{{ peopleList }}" itemTap="showDetail">
-    <ListView.itemTemplate></ListView.itemTemplate>
-  </ListView>
+    <ActionBar>
+        <Label text="People"></Label>
+    </ActionBar>
+    <GridLayout rows="auto, *" row="1">
+
+		<SearchBar id="searchBar" hint="Search for someone" class="search"></SearchBar>
+		<ListView items="{{ peopleList }}" itemTap="showDetail" row="1">
+			<ListView.itemTemplate>
+				<StackLayout>
+					<Label text="{{ fullName }}" horiztonalAlignment="left" verticalAlignment="center"></Label>
+					<Label text="{{ company }}" class="info"></Label>
+				</StackLayout>
+			</ListView.itemTemplate>
+		</ListView>
+		<ActivityIndicator busy="{{ isLoading }}" row="1"></ActivityIndicator>
+    </GridLayout>
 </Page>

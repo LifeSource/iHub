@@ -1,11 +1,14 @@
 <Page loaded="pageLoaded">
-  <ActionBar></ActionBar>
-  <GridLayout>
-    <ListView items="{{ projectList }}" itemTap="showPeopleByProject" row="0">
+  <ActionBar>
+    <Label text="Projects"></Label>
+  </ActionBar>
+  <GridLayout rows="auto, *" row="1">
+    <SearchBar id="searchBar" hint="Search for projects" class="search"></SearchBar>
+    <ListView items="{{ projectList }}" itemTap="showPeopleByProject" row="1">
       <ListView.itemTemplate>
         <Label text="{{ name }}"></Label>
       </ListView.itemTemplate>
     </ListView>
-    <ActivityIndicator busy="{{ isLoading }}"></ActivityIndicator>
+    <ActivityIndicator busy="{{ isLoading }}" row="1"></ActivityIndicator>
   </GridLayout>
 </Page>

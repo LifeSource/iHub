@@ -3,38 +3,39 @@ var appSettings = require("application-settings");
 var fetchModule = require("fetch");
 var ObservableArray = require("data/observable-array").ObservableArray;
 
-function PeopleListViewModel(people) {
-	var viewModel = new ObservableArray(people);
+var viewModel;
 
-	viewModel.load = function (userKey) {
+function PeopleListViewModel() {
 
-		return fetchModule.fetch(config.baseUrl + "/api/people/all/" + userKey)
-			.then(function (response) {
-				return response.json();
-			})
-			.then(function (data) {
-				appSettings.setString("peopleList", JSON.stringify(data));
-				data.forEach(function (person) {
-					viewModel.push(person);
-				});
-			}, function (error) {
-				console.log("Error: ", error);
-			});
-	};
+    viewModel = new ObservableArray();
 
-	viewModel.empty = function () {
-		while (viewModel.length) {
-			viewModel.pop();
-		}
-	};
+    viewModel.load = function(userKey) {
+        return fetchModule
+            .fetch(config.baseUrl + "/api/people/all/" + userKey)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(onSuccess, onError);
+    };
 
-	return viewModel;
+    viewModel.empty = function() {
+        viewModel.length = 0;
+    }
+
+    return viewModel;
 }
 
-function handleErrors(response) {
-	if (!response.ok) {
-		console.log("Error occurred");
-	}
+function onSuccess(people) {
+    appSettings.setString("peopleList", JSON.stringify(people));
+    people.forEach(function(person) {
+        viewModel.push(person);
+    });
+}
+
+function onError(response) {
+    if (!response.ok) {
+        console.error("Error occurred");
+    }
 }
 
 module.exports = PeopleListViewModel;
