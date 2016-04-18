@@ -20,7 +20,7 @@ function PeopleListViewModel() {
 
     viewModel.empty = function() {
         viewModel.length = 0;
-    }
+    };
 
     return viewModel;
 }
